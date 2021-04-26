@@ -5,7 +5,10 @@ import path from "path";
 import { print } from "graphql/language/printer";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 // import prismStyle from "react-syntax-highlighter/dist/esm/styles/prism/xonokai";
+import { prismStyle } from "react-syntax-highlighter/src/styles/prism/xonokai";
+
 import {
+  Container,
   Header,
   Grid,
   Dimmer,
@@ -14,7 +17,7 @@ import {
   Segment,
 } from "semantic-ui-react";
 
-import "styles/Home.module.css";
+import styles from "styles/Home.module.css";
 
 const ResumeQuery = gql`
   query ResumeQuery {
@@ -50,7 +53,7 @@ export default function Home() {
 
   if (loading) {
     return (
-      <header>
+      <header className={styles.header}>
         Orchan Magramov
         <Segment>
           <Dimmer active inverted>
@@ -64,15 +67,14 @@ export default function Home() {
 
   const { bio, positions } = data;
 
-  return (
-    <>
+  const header = (
+    <div className={styles.header}>
       <Head>
         <title>Resume | Next.js | GrahpQL</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-
-      <Grid divided="vertically">
-        <Header as="h2">
+      <Header as="h2">
+        <div>
           <Image
             // size="tiny"
             style={{
@@ -86,9 +88,18 @@ export default function Home() {
             src={`${path.join(process.cwd(), "images", "orchan.jpg")}`}
           />{" "}
           Orchan Magramov
-        </Header>
-        <Grid.Row columns={2}>
-          <Grid.Column>
+        </div>
+        <code className={styles.code}>Full-Stack Developer</code>
+      </Header>
+    </div>
+  );
+
+  return (
+    <Container>
+      {header}
+      <Grid className={styles.split} divided="vertically" centered>
+        <Grid.Column columns={2}>
+          <Grid.Row className={styles.left}>
             <h2>Contact</h2>
             <p>
               <strong>Email</strong>{" "}
@@ -106,19 +117,16 @@ export default function Home() {
               <strong>LinkedIn</strong>{" "}
               <a href={bio.linkedin}>{bio.linkedin.replace("https://", "")}</a>
             </p>
-          </Grid.Column>
-          <Grid.Column>
-            <SyntaxHighlighter
-              language="graphql"
-              // style={prismStyle}
-            >
+          </Grid.Row>
+          <Grid.Row>
+            <SyntaxHighlighter language="graphql" style={prismStyle}>
               {print(ResumeQuery)}
             </SyntaxHighlighter>
-          </Grid.Column>
-        </Grid.Row>
+          </Grid.Row>
+        </Grid.Column>
 
-        <Grid.Column olumns={3}>
-          <Grid.Row>
+        <Grid.Column columns={3}>
+          <Grid.Row className={styles.right}>
             <h2>Objective</h2>
             <p>{bio.objective}</p>
             <h2>Experience</h2>
@@ -132,10 +140,10 @@ export default function Home() {
               return (
                 <div key={position.id}>
                   <h3>{position.title}</h3>
-                  <p>
+                  <p className={styles.light}>
                     {position.company} | {position.location}
                   </p>
-                  <p>
+                  <p className={styles.light}>
                     {format(new Date(position.startDate), "MMM yyyy")} -{" "}
                     {position.endDate
                       ? format(new Date(position.endDate), "MMM yyyy")
@@ -153,6 +161,6 @@ export default function Home() {
           </Grid.Row>
         </Grid.Column>
       </Grid>
-    </>
+    </Container>
   );
 }

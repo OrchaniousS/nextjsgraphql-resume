@@ -2,6 +2,7 @@
 .ui.header > img:only-child {
   margin-right: 0.75rem;
 }
+
 .ui.header > .image:not(.icon),
 .ui.header > img {
   display: inline-block;
@@ -10,12 +11,14 @@
   height: auto;
   vertical-align: middle;
 }
+
 .ui.circular.image,
 .ui.circular.image > *,
 .ui.circular.images .image,
 .ui.circular.images .image > * {
   border-radius: 500rem;
 }
+
 .ui.circular.image {
   overflow: hidden;
 }
@@ -34,4 +37,71 @@ img.ui.image {
 
 img.ui {
   border-style: none;
+}
+
+.header {
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+  margin-bottom: 1em;
+  transition: box-shadow 0.5s ease, padding 0.5s ease;
+  padding: 2rem 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  background-color: #bbdefb;
+  text-align: center;
+}
+
+.code {
+  margin-right: -2em;
+}
+/* 
+.header {
+  text-align: center;
+  padding: 2rem 0;
+  background-color: #bbdefb;
+} */
+
+.light {
+  margin: 0.25rem 0;
+  font-size: 0.9rem;
+  color: #607d8b;
+}
+
+.split {
+  display: flex;
+  flex: 1 1 150px;
+  flex-wrap: wrap;
+  padding: 1rem;
+}
+
+.left,
+.right,
+.left > pre {
+  transition: box-shadow 0.5s ease, padding 0.5s ease;
+  padding: 0.7rem;
+}
+
+.left {
+  width: 80%;
+}
+.left > pre {
+  width: 50%;
+}
+.right {
+  width: 100%;
+  padding: 0 2rem;
+}
+
+@media only screen and (max-width: 1024px) {
+  .left {
+    width: 100%;
+  }
+  .left pre {
+    width: 100%;
+  }
+  .right {
+    width: 100%;
+  }
 }
