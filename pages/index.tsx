@@ -5,7 +5,7 @@ import path from "path";
 import { print } from "graphql/language/printer";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 // import prismStyle from "react-syntax-highlighter/dist/esm/styles/prism/xonokai";
-import { prismStyle } from "react-syntax-highlighter/src/styles/prism/xonokai";
+// import { style } from "react-syntax-highlighter/src/styles/prism/xonokai";
 
 import {
   Container,
@@ -98,7 +98,7 @@ export default function Home() {
     <Container>
       {header}
       <Grid className={styles.split} divided="vertically" centered>
-        <Grid.Column columns={2}>
+        <Grid.Column>
           <Grid.Row className={styles.left}>
             <h2>Contact</h2>
             <p>
@@ -115,17 +115,22 @@ export default function Home() {
             </p>
             <p>
               <strong>LinkedIn</strong>{" "}
-              <a href={bio.linkedin}>{bio.linkedin.replace("https://", "")}</a>
+              <a href={bio.linkedin}>
+                {bio.linkedin.replace("https://www.", "")}
+              </a>
             </p>
           </Grid.Row>
           <Grid.Row>
-            <SyntaxHighlighter language="graphql" style={prismStyle}>
+            <SyntaxHighlighter
+              language="graphql"
+              highlighter={"prism" || "hljs"}
+              // style={style.xonokai}
+            >
               {print(ResumeQuery)}
             </SyntaxHighlighter>
           </Grid.Row>
         </Grid.Column>
-
-        <Grid.Column columns={3}>
+        <Grid.Column>
           <Grid.Row className={styles.right}>
             <h2>Objective</h2>
             <p>{bio.objective}</p>

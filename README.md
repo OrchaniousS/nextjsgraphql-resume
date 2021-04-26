@@ -20,3 +20,4 @@ yarn dev
 - micro
 - date-fns
 - Apollo Server Micro
+- Semantic ui css, react sematic ui

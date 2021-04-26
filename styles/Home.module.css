@@ -74,6 +74,15 @@ img.ui {
   flex: 1 1 150px;
   flex-wrap: wrap;
   padding: 1rem;
+  margin: 0.8rem;
+  border: 0 solid grey;
+  border-radius: 0.2rem;
+  box-shadow: 0 0 0.3rem grey;
+  background: rgba(220, 220, 220, 0.062);
+}
+
+.left a {
+  color: dodgerblue;
 }
 
 .left,
@@ -84,7 +93,7 @@ img.ui {
 }
 
 .left {
-  width: 80%;
+  /* width: 90%; */
 }
 .left > pre {
   width: 50%;
