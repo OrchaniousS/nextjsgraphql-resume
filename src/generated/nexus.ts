@@ -52,8 +52,8 @@ export interface NexusGenScalars {
 }
 
 export interface NexusGenObjects {
-  Bio: faces.undefined;
-  Position: faces.undefined;
+  Bio: faces.BioInterface;
+  Position: faces.PositionInterface;
   Query: {};
 }
 
